@@ -14,7 +14,7 @@ namespace TinkoffTest.Controllers
     {
         public ActionResult Encode(string url)
         {
-            if (url != null)
+            if (!string.IsNullOrEmpty(url))
             {
                 var encodeService = new EncodeService();
                 var dbService = new DbService();

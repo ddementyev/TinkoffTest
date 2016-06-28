@@ -1,7 +1,52 @@
-﻿
-@{
-    ViewBag.Title = "Encode";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Css/site.css" rel="stylesheet" />
 
-<h2>Encode</h2>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
 
+<body>
+    <div class="navbar-default">
+        <div class="container">
+            <div class="navbar-header">            
+                <a class="navbar-brand" href="#"><b>Главная</b></a>
+                <a class="navbar-brand" href="#"><b>Мои ссылки</b></a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="headerwrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>Сервис коротких ссылок<br /></h1>
+                    <p class="desc">Введите длинную ссылку и вы получите короткую следующего вида: {сайт}/e5ZCm</p>
+                    <form class="form-inline" role="form" method="post">
+                        <div class="form-group">
+                            <input type="url" name="url" class="form-control" placeholder="Введите ссылку">
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-lg">Укоротить</button>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <img class="img-responsive" src="~/Content/Img/logo.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt centered">
+            <div class="col-lg-6 col-lg-offset-3">
+                <h1>Укорачиватель ссылок</h1>
+                <p class="descbottom">Иногда ссылки бывают длинными, совсем иногда — очень длинными, но почти всегда — слишком длинными. Для того, чтобы избавиться от этой проблемы, был создан этот сервис</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
