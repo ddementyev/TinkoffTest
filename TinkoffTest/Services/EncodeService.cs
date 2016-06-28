@@ -3,27 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
-using System.Web.Mvc;
+using TinkoffTest.Interfaces;
 
-namespace TinkoffTest.Controllers
+namespace TinkoffTest.Services
 {
-    public class EncodeController : Controller
+    public class EncodeService : IEncodeService
     {
         private string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         private int baseType = 62;
-
-        public ActionResult Index()
-        {
-            //test
-            var gb = Guid.NewGuid().ToByteArray();
-            int i = BitConverter.ToInt32(gb, 0);
-
-            var encoded = Encode(i);
-            var decoded = Decode(encoded);
-
-            return View();
-        }
-
 
         public string Encode(int num)
         {
@@ -44,7 +31,7 @@ namespace TinkoffTest.Controllers
             return builder.ToString();
         }
 
-        public int Decode(String str)
+        public int DecodeData(string str)
         {
             int num = 0;
 
@@ -54,6 +41,6 @@ namespace TinkoffTest.Controllers
             }
 
             return num;
-        }  
+        }
     }
 }
