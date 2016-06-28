@@ -18,7 +18,7 @@ namespace TinkoffTest.Controllers
                     InitialUrl = url,
                     ShortUrl = shortUrl,
                     CreationDate = DateTime.Now,
-                    Clicks = 100500
+                    Clicks = 0
                 };
                 db.UrlsData.Add(urlData);
                 db.SaveChanges();
@@ -31,6 +31,16 @@ namespace TinkoffTest.Controllers
             {
                 var res = db.UrlsData.Where(a => a.ShortUrl.Contains(shortUrl)).Select(b => b.InitialUrl).ToList().FirstOrDefault();
                 return res;
+            }
+        }
+
+        public void UpdateClicks(string shortUrl)
+        {
+            using (var db = new UrlsModel())
+            {
+                var data = db.UrlsData.Where(a => a.ShortUrl.Contains(shortUrl)).FirstOrDefault() as UrlsData;
+                db.Entry(data).Property(a => a.Clicks).CurrentValue += 1;
+                db.SaveChanges();
             }
         }
     }

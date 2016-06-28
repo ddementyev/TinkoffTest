@@ -30,8 +30,9 @@ namespace TinkoffTest.Controllers
         public ActionResult Decode()
         {
             var dbService = new DbService();
-            var queryValues = Request.Url.AbsolutePath;
-            var initialUrl = dbService.GetInitialUrl(queryValues);
+            var shortUrl = Request.Url.AbsolutePath;
+            var initialUrl = dbService.GetInitialUrl(shortUrl);
+            dbService.UpdateClicks(shortUrl);
 
             return View();
         }
