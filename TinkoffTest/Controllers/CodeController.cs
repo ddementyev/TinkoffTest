@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using System.Web.Http;
 using TinkoffTest.Services;
 
 namespace TinkoffTest.Controllers
@@ -27,14 +21,22 @@ namespace TinkoffTest.Controllers
             return View();
         }
 
-        public ActionResult Decode()
+        public ActionResult Decode(string url)
         {
             var dbService = new DbService();
             var shortUrl = Request.Url.AbsolutePath;
-            var initialUrl = dbService.GetInitialUrl(shortUrl);
-            dbService.UpdateClicks(shortUrl);
+            var urlData = dbService.GetUrlData(shortUrl);
 
-            return View();
+            return View("Decode", urlData);
+        }
+
+        public void UrlRedirect(string url)
+        {
+            var dbService = new DbService();
+            var shortUrl = Request.Url.AbsolutePath;
+            var urlData = dbService.GetUrlData(shortUrl);
+            dbService.UpdateClicks(shortUrl);
+            Response.Redirect(urlData.InitialUrl);
         }
 
         public int GetUniqueId()

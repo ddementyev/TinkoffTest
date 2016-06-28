@@ -8,7 +8,6 @@ namespace TinkoffTest.Interfaces
     public interface IDbService
     {
         void WriteUrlData(int id, string url, string shortUrl);
-
-        string GetInitialUrl(string shortUrl);
+        UrlsData GetUrlData(string shortUrl);
     }
 }

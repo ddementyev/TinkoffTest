@@ -25,12 +25,11 @@ namespace TinkoffTest.Controllers
             }
         }
 
-        public string GetInitialUrl(string shortUrl)
+        public UrlsData GetUrlData(string shortUrl)
         {
             using (var db = new UrlsModel())
             {
-                var res = db.UrlsData.Where(a => a.ShortUrl.Contains(shortUrl)).Select(b => b.InitialUrl).ToList().FirstOrDefault();
-                return res;
+                return db.UrlsData.Where(a => a.ShortUrl.Contains(shortUrl)).FirstOrDefault() as UrlsData;
             }
         }
 
@@ -39,8 +38,11 @@ namespace TinkoffTest.Controllers
             using (var db = new UrlsModel())
             {
                 var data = db.UrlsData.Where(a => a.ShortUrl.Contains(shortUrl)).FirstOrDefault() as UrlsData;
-                db.Entry(data).Property(a => a.Clicks).CurrentValue += 1;
-                db.SaveChanges();
+                if (data != null)
+                {
+                    db.Entry(data).Property(a => a.Clicks).CurrentValue += 1;
+                    db.SaveChanges();
+                }
             }
         }
     }

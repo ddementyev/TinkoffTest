@@ -22,7 +22,7 @@ namespace TinkoffTest
             routes.MapRoute(
                name: "Decode",
                url: "{shortUrl}",
-               defaults: new { controller = "Code", action = "Decode", shortUrl = UrlParameter.Optional }
+               defaults: new { controller = "Code", action = "UrlRedirect", shortUrl = UrlParameter.Optional }
            );
 
             routes.MapRoute(
