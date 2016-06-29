@@ -179,7 +179,8 @@
     <Compile Include="Models\UrlsData.cs" />
     <Compile Include="Models\UrlsModel.cs" />
     <Compile Include="Services\EncodeService.cs" />
-    <Compile Include="Tests\GetUrls.cs" />
+    <Compile Include="Tests\Decoding.cs" />
+    <Compile Include="Tests\DbConnection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config">
@@ -189,6 +190,8 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Urls\Encode.cshtml" />
     <Content Include="Views\Urls\MyList.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

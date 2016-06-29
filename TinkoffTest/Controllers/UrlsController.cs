@@ -8,11 +8,10 @@ namespace TinkoffTest.Controllers
 {
     public class UrlsController : Controller
     {  
-        public ActionResult MyList(string url)
+        public ActionResult MyList()
         {
             return View();
         }
-
         public ActionResult Encode(string url)
         {
             if (!string.IsNullOrEmpty(url))
@@ -26,7 +25,6 @@ namespace TinkoffTest.Controllers
             }
             return View();
         }
-
         public JsonResult GetUrls(string url)
         {
             var dbService = new DbService();
@@ -34,7 +32,6 @@ namespace TinkoffTest.Controllers
 
             return Json(allUrls, JsonRequestBehavior.AllowGet);
         }
-
         public void UrlRedirect(string url)
         {
             var dbService = new DbService();
@@ -43,7 +40,6 @@ namespace TinkoffTest.Controllers
             dbService.UpdateClicks(shortUrl);
             Response.Redirect(urlData.InitialUrl);
         }
-
         public int GetUniqueId()
         {
             var rnd = new Random();
