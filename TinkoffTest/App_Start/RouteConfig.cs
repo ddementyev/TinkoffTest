@@ -16,23 +16,20 @@ namespace TinkoffTest
             routes.MapRoute(
                name: "Encode",
                url: "",
-               defaults: new { controller = "Code", action = "Encode", shortUrl = UrlParameter.Optional }
+               defaults: new { controller = "Urls", action = "Encode", shortUrl = UrlParameter.Optional }
            );
 
             routes.MapRoute(
-               name: "Decode",
+               name: "Redirect",
                url: "{shortUrl}",
-               defaults: new { controller = "Code", action = "UrlRedirect", shortUrl = UrlParameter.Optional }
+               defaults: new { controller = "Urls", action = "UrlRedirect", shortUrl = UrlParameter.Optional }
            );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Code", action = "Encode", id = UrlParameter.Optional }
+                defaults: new { controller = "Urls", action = "Encode", id = UrlParameter.Optional }
             );
-
-
-
         }
     }
 }

@@ -33,6 +33,14 @@ namespace TinkoffTest.Controllers
             }
         }
 
+        public List<UrlsData> GetAllUrls()
+        {
+            using (var db = new UrlsModel())
+            {
+                return db.UrlsData.ToList();
+            }
+        }
+
         public void UpdateClicks(string shortUrl)
         {
             using (var db = new UrlsModel())

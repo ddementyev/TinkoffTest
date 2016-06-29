@@ -9,5 +9,6 @@ namespace TinkoffTest.Interfaces
     {
         void WriteUrlData(int id, string url, string shortUrl);
         UrlsData GetUrlData(string shortUrl);
+        List<UrlsData> GetAllUrls();
     }
 }

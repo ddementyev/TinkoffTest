@@ -8,6 +8,8 @@ namespace TinkoffTest.App_Start
         {
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                        "~/Scripts/angular.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                       "~/Scripts/jquery-1.10.2.js"));
         }
     }
 }

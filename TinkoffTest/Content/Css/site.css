@@ -44,6 +44,10 @@ body {
     width: 100%;
 }
 
+.urls{
+    padding-top: 0px;
+}
+
 .headerwrap h1 {
     margin-top: 60px;
     margin-bottom: 15px;
@@ -51,4 +55,8 @@ body {
     font-size: 45px;
     font-weight: 300;
     letter-spacing: 1px;
+}
+
+.highlighted {
+     background-color: white;
 }

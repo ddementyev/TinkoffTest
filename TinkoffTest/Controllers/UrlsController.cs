@@ -1,11 +1,18 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using TinkoffTest.Services;
 
 namespace TinkoffTest.Controllers
 {
-    public class CodeController : Controller
-    {
+    public class UrlsController : Controller
+    {  
+        public ActionResult MyList(string url)
+        {
+            return View();
+        }
+
         public ActionResult Encode(string url)
         {
             if (!string.IsNullOrEmpty(url))
@@ -13,21 +20,19 @@ namespace TinkoffTest.Controllers
                 var encodeService = new EncodeService();
                 var dbService = new DbService();
                 var urlId = GetUniqueId();
-                var shortUrl = Request.Url.Authority + "/" + encodeService.Encode(urlId);
-
+                var shortUrl = "http://" + Request.Url.Authority + "/" + encodeService.Encode(urlId);
                 dbService.WriteUrlData(urlId, url, shortUrl);
+                return View("MyList");
             }
-
             return View();
         }
 
-        public ActionResult Decode(string url)
+        public JsonResult GetUrls(string url)
         {
             var dbService = new DbService();
-            var shortUrl = Request.Url.AbsolutePath;
-            var urlData = dbService.GetUrlData(shortUrl);
+            var allUrls = dbService.GetAllUrls();
 
-            return View("Decode", urlData);
+            return Json(allUrls, JsonRequestBehavior.AllowGet);
         }
 
         public void UrlRedirect(string url)
