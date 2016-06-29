@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Css/site.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+
+<body>
+    <div class="navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"><b>Главная</b></a>
+                <a class="navbar-brand" href="/Urls/MyList"><b>Мои ссылки</b></a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="headerwrap urls" ng-app="myApp" ng-controller="myCtrl">
+        <div class="container">
+            <h1 ng-bind="title">Список всех моих ссылок<br /></h1>
+            <div class="row">
+                <div>
+                    <ul ng-controller="myCtrl" ng-repeat="x in records" class="list-group">
+                        <li class="list-group-item list-group-item-danger"><b>Короткая ссылка: </b><a href ="#"target="_blank" ng-href="{{x.ShortUrl}}">{{x.ShortUrl}}</a></li>
+                        <li class="list-group-item list-group-item-info"><b>Полная ссылка: </b>{{x.InitialUrl}}</li>
+                        <li class="list-group-item list-group-item-info"><b>Дата и время создания: </b>{{x.CreationDate | date:'dd/MM/yyyy HH:mm:ss'}}</li>
+                        <li class="list-group-item list-group-item-info"><b>Количество Переходов: </b>{{x.Clicks}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mt centered">
+            <div class="col-lg-6 col-lg-offset-3">
+                <h1>Укорачиватель ссылок</h1>
+                <p class="descbottom">Иногда ссылки бывают длинными, совсем иногда — очень длинными, но почти всегда — слишком длинными. Для того, чтобы избавиться от этой проблемы, был создан этот сервис</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope, $http) {
+        $scope.records = [];
+        var result = $http.get("/Urls/GetUrls");
+        result.success(function (data) {
+            $scope.records = data;
+            $scope.title = $scope.records.length == 0 ? "У вас пока нет ссылок" : "Список всех моих ссылок"
+            $.each($scope.records, (i, elem) => {
+                elem.CreationDate = new Date(parseInt(elem.CreationDate.replace("/Date(", "").replace(")/", ""), 10));
+            })
+        });
+    });
+</script>

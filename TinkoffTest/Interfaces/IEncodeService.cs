@@ -8,6 +8,5 @@ namespace TinkoffTest.Interfaces
     public interface IEncodeService
     {
         string Encode(int num);
-        int DecodeData(string str);
     }
 }

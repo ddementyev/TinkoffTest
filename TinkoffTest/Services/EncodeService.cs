@@ -30,17 +30,5 @@ namespace TinkoffTest.Services
 
             return builder.ToString();
         }
-
-        public int DecodeData(string str)
-        {
-            int num = 0;
-
-            for (int i = 0, len = str.Length; i < len; i++)
-            {
-                num = num * baseType + alphabet.IndexOf(str[(i)]);
-            }
-
-            return num;
-        }
     }
 }
