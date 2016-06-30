@@ -1,5 +1,4 @@
-﻿using TinkoffTest.Controllers;
-using Xunit;
+﻿using Xunit;
 
 namespace TinkoffTest.Tests
 {
